@@ -12,3 +12,4 @@ steps:
 substitutions:
     _LOCATION: europe-west4-a
     _GKE_CLUSTER: workshop-gke-cluster-1
+    _TAG: 1.9.0
