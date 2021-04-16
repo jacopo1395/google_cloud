@@ -1,22 +1,7 @@
 steps:
+
   - name: 'gcr.io/cloud-builders/mvn'
-    args: [ 'test' ]
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_TAG}', '.']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}:${_TAG}']
-  - name: "gcr.io/cloud-builders/gke-deploy"
-    args:
-      - run
-      - --filename=cloudbuild/gke
-      - --location=${_CLUSTER_REGION}
-      - --cluster=${_GKE_CLUSTER}
-args:
-  - run
-  - --filename=gke/deployment.yaml
-  - --location=${_LOCATION}
-  - --cluster=${_GKE_CLUSTER}
-substitutions:
-  _LOCATION: europe-west4-a
-  _GKE_CLUSTER: workshop-gke-cluster-1
-  _CLUSTER_REGION: europe-west4-a
+    args: ['package', 'appengine:stage']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', 'target/appengine-staging/app.yaml','--project','project-test-01-282013']
+    
