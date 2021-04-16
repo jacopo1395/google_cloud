@@ -115,3 +115,4 @@ After checking the image, delete it to avoid resource consumptions and costs.
 If previously tagged images have not been deleted, you need to force tag deletion using the option _--delete-tags_:
 
 	gcloud artifacts docker images delete europe-west4-docker.pkg.dev/workshop-307013/docker-repository/workshop-us63:1.8.0 --delete-tags
+
