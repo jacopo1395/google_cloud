@@ -1,3 +1,3 @@
 # Google Cloud Platform
 
-change branch for see the example
+change branch to see the example
